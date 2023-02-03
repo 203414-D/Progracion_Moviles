@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:onboarding_view/pages/login.dart';
+import 'package:onboarding_view/pages/register.dart';
 import 'package:onboarding_view/screens/onboarding/body_boarding.dart';
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Mi primera aplicacion',
       initialRoute:'/' ,
       routes: {
-        '/': (context) => BodyBoarding()
+        '/': (context) => BodyBoarding(),
+        '/segunda':(context) => Login(),
+        '/tercera':(context) => Register()
       },
     );
   }

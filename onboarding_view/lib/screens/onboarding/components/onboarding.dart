@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:onboarding_view/pages/login.dart';
 import 'package:onboarding_view/screens/onboarding/components/content_boarding.dart';
 import 'package:onboarding_view/screens/onboarding/components/content_page.dart';
 
@@ -15,7 +16,7 @@ class Onboarding extends StatefulWidget {
 
 class _OnboardingState extends State<Onboarding> {
   int currentPage = 0;
-
+  PageController _pageController = PageController();
   List<Map<dynamic, dynamic>> boardingData = [
     {
       'image': 'assets/images/B1.png',
@@ -43,9 +44,16 @@ class _OnboardingState extends State<Onboarding> {
       'title2': 'nulla faucibus tellus ut odio scelerisque vitae molestie lectus feugiat',
     }
   ];
-
+   void _incrementCurrentPage() {
+    if (currentPage < boardingData.length) {
+          setState(() {
+      currentPage += 1;
+    });
+    _pageController.jumpToPage(currentPage);
+    } 
+  }
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return SafeArea(
         child: Column(
       children: [
@@ -53,6 +61,7 @@ class _OnboardingState extends State<Onboarding> {
             flex: 2,
             child: Container(padding: const EdgeInsets.only(top:150),
             child: PageView.builder(
+              controller: _pageController,
               itemBuilder: (context, index) => ContentBoarding(
                 image: boardingData[index]['image'],
                  title: boardingData[index]['title'],
@@ -82,31 +91,54 @@ class _OnboardingState extends State<Onboarding> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 130),
-                child: ElevatedButton(onPressed: (){}, style: ElevatedButton.styleFrom(
-                  side: const BorderSide(
-                    width: 2,
-                    color: Color.fromARGB(255, 139, 139, 139),
+                child: currentPage == boardingData.length - 1
+                  ? ElevatedButton(onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login())
+                    );
+                  }, style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      width: 2,
+                      color: Color.fromARGB(255, 131, 161, 97), 
+                    ),
+                    backgroundColor: Color.fromARGB(255, 131, 161, 97),
+                    shadowColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    fixedSize: Size(290, 45)
+                  ), 
+                  child:const Text('Nuevo Botón',
+                   style: TextStyle(fontSize: 15, 
+                   fontWeight: FontWeight.bold,
+                   color: Colors.white),
                   ),
-                  foregroundColor: Color.fromARGB(255, 139, 139, 139),
-                  backgroundColor: Colors.white,
-                  shadowColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
+                  )
+                  : ElevatedButton(onPressed: _incrementCurrentPage, style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      width: 2,
+                      color: Color.fromARGB(255, 139, 139, 139),
+                    ),
+                    foregroundColor: Color.fromARGB(255, 139, 139, 139),
+                    backgroundColor: Colors.white,
+                    shadowColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    fixedSize: Size(290, 45)
+                  ), 
+                  child:const Text('Siguiente',
+                   style: TextStyle(fontSize: 15,
+                    fontWeight: FontWeight.bold
+                    ),
                   ),
-                  fixedSize: Size(290, 45)
-                ), 
-                child:const Text('Siguiente',
-                 style: TextStyle(fontSize: 15, 
-                 fontWeight: FontWeight.bold),
-                ),
-                ),
-               )
-              ],
-            )
-          )
+            ),
+          ),
+         ],
         ),
-      ],
-    ),
-   );
+      )),
+    ],
+   ));
   }
 }
