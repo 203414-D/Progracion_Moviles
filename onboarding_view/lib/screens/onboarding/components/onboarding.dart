@@ -16,7 +16,7 @@ class Onboarding extends StatefulWidget {
 
 class _OnboardingState extends State<Onboarding> {
   int currentPage = 0;
-  PageController _pageController = PageController();
+  PageController pageController = PageController();
   List<Map<dynamic, dynamic>> boardingData = [
     {
       'image': 'assets/images/B1.png',
@@ -44,12 +44,12 @@ class _OnboardingState extends State<Onboarding> {
       'title2': 'nulla faucibus tellus ut odio scelerisque vitae molestie lectus feugiat',
     }
   ];
-   void _incrementCurrentPage() {
+   void incrementCurrentPage() {
     if (currentPage < boardingData.length) {
           setState(() {
       currentPage += 1;
     });
-    _pageController.jumpToPage(currentPage);
+    pageController.jumpToPage(currentPage);
     } 
   }
   @override
@@ -61,7 +61,7 @@ class _OnboardingState extends State<Onboarding> {
             flex: 2,
             child: Container(padding: const EdgeInsets.only(top:150),
             child: PageView.builder(
-              controller: _pageController,
+              controller: pageController,
               itemBuilder: (context, index) => ContentBoarding(
                 image: boardingData[index]['image'],
                  title: boardingData[index]['title'],
@@ -115,7 +115,7 @@ class _OnboardingState extends State<Onboarding> {
                    color: Colors.white),
                   ),
                   )
-                  : ElevatedButton(onPressed: _incrementCurrentPage, style: ElevatedButton.styleFrom(
+                  : ElevatedButton(onPressed: incrementCurrentPage, style: ElevatedButton.styleFrom(
                     side: const BorderSide(
                       width: 2,
                       color: Color.fromARGB(255, 139, 139, 139),
