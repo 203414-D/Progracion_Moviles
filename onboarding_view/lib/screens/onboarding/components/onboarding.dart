@@ -109,7 +109,7 @@ class _OnboardingState extends State<Onboarding> {
                     ),
                     fixedSize: Size(290, 45)
                   ), 
-                  child:const Text('Nuevo Botón',
+                  child:const Text('Continuar',
                    style: TextStyle(fontSize: 15, 
                    fontWeight: FontWeight.bold,
                    color: Colors.white),
