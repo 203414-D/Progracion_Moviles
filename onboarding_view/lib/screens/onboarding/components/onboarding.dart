@@ -102,12 +102,12 @@ class _OnboardingState extends State<Onboarding> {
                       width: 2,
                       color: Color.fromARGB(255, 131, 161, 97), 
                     ),
-                    backgroundColor: Color.fromARGB(255, 131, 161, 97),
+                    backgroundColor: const Color.fromARGB(255, 131, 161, 97),
                     shadowColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)
                     ),
-                    fixedSize: Size(290, 45)
+                    fixedSize: const Size(290, 45)
                   ), 
                   child:const Text('Continuar',
                    style: TextStyle(fontSize: 15, 
@@ -120,13 +120,13 @@ class _OnboardingState extends State<Onboarding> {
                       width: 2,
                       color: Color.fromARGB(255, 139, 139, 139),
                     ),
-                    foregroundColor: Color.fromARGB(255, 139, 139, 139),
+                    foregroundColor: const Color.fromARGB(255, 139, 139, 139),
                     backgroundColor: Colors.white,
                     shadowColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)
                     ),
-                    fixedSize: Size(290, 45)
+                    fixedSize: const Size(290, 45)
                   ), 
                   child:const Text('Siguiente',
                    style: TextStyle(fontSize: 15,
